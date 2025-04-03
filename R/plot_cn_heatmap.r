@@ -203,42 +203,20 @@ plot_cn_heatmap_one_simulation <- function(model,
         sample_clustering <- clustering_results$clustering %>% dplyr::select(cell_id, clone_id)
         sample_tree <- clustering_results$tree
     }
-    #-----------------------------------------Plot total CN profiles
-    if (plotcol == "total-copy") {
-        filename <- paste(folder_plots, model, "_sim", iteration, "_CN_total", filename_suffix, ".jpeg", sep = "")
-        jpeg(file = filename, width = width, height = height)
-        p <- plotHeatmap(sample_genotype_profiles,
-            plotcol = "state",
-            clusters = sample_clustering,
-            tree = sample_tree,
-            reorderclusters = TRUE,
-            plottree = plottree,
-            plotfrequency = plotfrequency,
-            show_legend = show_legend,
-            show_library_label = show_library_label,
-            show_clone_label = show_clone_label,
-            normalize_tree = FALSE,
-        )
-        print(p)
-        dev.off()
-    }
-    #-----------------------------------------Plot minor CN profiles
-    if (plotcol == "minor-copy") {
-        filename <- paste(folder_plots, model, "_sim", iteration, "_CN_minor", filename_suffix, ".jpeg", sep = "")
-        jpeg(file = filename, width = width, height = height)
-        p <- plotHeatmap(sample_genotype_profiles,
-            plotcol = "Min",
-            clusters = sample_clustering,
-            tree = sample_tree,
-            reorderclusters = TRUE,
-            plottree = plottree,
-            plotfrequency = plotfrequency,
-            show_legend = show_legend,
-            show_library_label = show_library_label,
-            show_clone_label = show_clone_label,
-            normalize_tree = FALSE
-        )
-        print(p)
-        dev.off()
-    }
+    filename <- paste(folder_plots, model, "_sim", iteration, "_", plotcol, "_", filename_suffix, ".jpeg", sep = "")
+    jpeg(file = filename, width = width, height = height)
+    p <- plotHeatmap(sample_genotype_profiles,
+        plotcol = plotcol,
+        clusters = sample_clustering,
+        tree = sample_tree,
+        reorderclusters = TRUE,
+        plottree = plottree,
+        plotfrequency = plotfrequency,
+        show_legend = show_legend,
+        show_library_label = show_library_label,
+        show_clone_label = show_clone_label,
+        normalize_tree = FALSE
+    )
+    print(p)
+    dev.off()
 }
