@@ -35,6 +35,12 @@ SIMULATOR_FULL_PHASE_1_selection_rate <- function(WGD_count, driver_count, drive
         clone_selection_rate <- 0
         return(clone_selection_rate)
     }
+    # edit part
+    # monosomy clones will die
+    if (min(vec_CN_all) <= 1){
+        clone_selection_rate <- 0
+        return(clone_selection_rate)
+    }
     # #-----Cell is not viable if exceeding maximum length of homozygosity
     # L_homozygosity <- 0
     # for (chrom in 1:N_chromosomes) {
