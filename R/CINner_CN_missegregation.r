@@ -36,7 +36,8 @@ SIMULATOR_FULL_PHASE_1_CN_missegregation <- function(genotype_to_react,
             i_gain <- sample.int(2, size = 1)
             #   Choose the chromosome to be mis-segregated
             # chrom <- sample.int(N_chromosomes, size = 1)
-            chrom <- sample.int(N_chromosomes, size = 1, prob = ploidy_chrom_1 / sum(ploidy_chrom_1))
+            # chrom <- sample.int(N_chromosomes, size = 1, prob = ploidy_chrom_1 / sum(ploidy_chrom_1))
+            chrom <- 8 # Mingxuan edit
             if (!is.null(chromosomes_excluded) & (chrom %in% chromosomes_excluded)) {
                 next
             }
